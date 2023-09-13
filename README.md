@@ -6,7 +6,7 @@
 
 ![kek](images/kek.png)
 
->I screenshotted my screenshot to!? *Ironic*.
+>I screenshotted my screenshot tool!? *Ironic*.
 
 ## Result
 
