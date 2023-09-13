@@ -1,6 +1,6 @@
 from tkinter import *
 from PIL import ImageGrab
-import datetime
+import datetime, os
 
 class SnippingTool:
     def __init__(self, master):
@@ -17,6 +17,8 @@ class SnippingTool:
         self.canvas.bind("<ButtonPress-1>", self.on_mouse_down)
         self.canvas.bind("<B1-Motion>", self.on_mouse_move)
         self.canvas.bind("<ButtonRelease-1>", self.on_mouse_up)
+        self.imageDir = "./images"  # add your preferred directory here
+        self.imageType = '.png'  # change to '.jpg' if preferred or anyother
         master.bind("<Escape>", self.on_key_press)
 
     def on_mouse_down(self, event):
@@ -44,8 +46,8 @@ class SnippingTool:
         x1, x2 = min(self.start_x, self.end_x), max(self.start_x, self.end_x)
         y1, y2 = min(self.start_y, self.end_y), max(self.start_y, self.end_y)
         screenshot = ImageGrab.grab(bbox=(x1, y1, x2, y2))
-        filename = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S') + ".png"
-        screenshot.save(filename)
+        filename = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S') + self.imageType
+        screenshot.save(os.path.join(self.imageDir, filename))
         self.master.destroy()
 
     def on_key_press(self, event):
